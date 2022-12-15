@@ -37,7 +37,7 @@ export default class Login extends Component {
           },
           resolve
         )
-      );
+      )
 
       if (this.state.toDashboard) {
         console.log(response);
