@@ -40,7 +40,8 @@ export default class Login extends Component {
       );
 
       if (this.state.toDashboard) {
-        this.handleSession();
+        console.log(response);
+        //this.handleSession();
       }
 
       console.log(this.state.toDashboard);

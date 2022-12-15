@@ -19,10 +19,12 @@ public class Setup implements CommandLineRunner {
 
         user1.setEmail("abubleh@abublau.com");
         user1.setSenha("123456");
+        user1.setAdmin(true);
 
         UserInfo user2 = new UserInfo();
         user2.setEmail("blablublei@okokokok.com");
         user2.setSenha("123456");
+        user2.setAdmin(false);
 
         userService.save(user1);
         userService.save(user2);
