@@ -1,6 +1,6 @@
 package com.testesqlinjection.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user_info")

@@ -10,6 +10,8 @@ import Layout from "./pages/layout";
 import Footer from "./pages/footer";
 import Login from "./pages/login";
 
+import NovoUsuario from "./pages/novo";
+
 function App() {
   document.title = "SQL Inject Test";
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/novo-usuario" element={<NovoUsuario />} />
           </Route>
         </Routes>
         <Footer />

@@ -1,5 +1,6 @@
 package com.testesqlinjection.controller;
 
+import com.testesqlinjection.SecurityConfig;
 import com.testesqlinjection.model.UserInfo;
 import com.testesqlinjection.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +23,41 @@ public class UserController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<UserInfo> findByEmail(@RequestBody UserInfo usuario) {
+    public ResponseEntity<UserInfo> login(@RequestBody UserInfo usuario) {
+
+        UserInfo user = userService.getByEmailAndSenha(usuario.getEmail(), usuario.getSenha());
+
+        if (user != null) {
+                return ResponseEntity.ok().body(user);
+
+        }
+
+            return ResponseEntity.notFound().build();
+
+    }
+
+    @PostMapping(value = "/cadastro")
+    public ResponseEntity<UserInfo> cadastro(@RequestBody UserInfo usuario) {
 
         UserInfo user = userService.getByEmail(usuario.getEmail());
 
-        if(user!=null && user.getSenha().equals(usuario.getSenha())){
-            System.out.println("email" +user.getEmail());
-            System.out.println("senha" +user.getSenha());
+        if (user != null) {
 
-            return ResponseEntity.ok().body(user);
-        }
+            System.out.println("Usuario ja cadastrado");
 
-        else{
-            return ResponseEntity.notFound().build();
+            return null;
+
         }
 
 
+        SecurityConfig securityConfig = new SecurityConfig();
+
+        String senhaEncode = securityConfig.cifrador().encode(usuario.getSenha());
+        usuario.setSenha(senhaEncode);
+
+        userService.save(usuario);
+
+        return ResponseEntity.ok().body(usuario);
 
     }
 

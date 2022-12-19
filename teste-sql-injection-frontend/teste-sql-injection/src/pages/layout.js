@@ -35,6 +35,17 @@ const Layout = () => {
             </NavLink>
           </div>
 
+          <div style={{ margin: "10px" }}>
+            <NavLink
+              to="/novo-usuario"
+              style={({ isActive }) => ({
+                color: isActive ? "greenyellow" : "white",
+              })}
+            >
+              Cadastrar
+            </NavLink>
+          </div>
+
         </div>
   
         <div className="navbar-nav mr-auto"></div>

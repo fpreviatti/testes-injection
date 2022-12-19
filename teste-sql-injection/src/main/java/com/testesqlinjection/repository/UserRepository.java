@@ -7,7 +7,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<UserInfo,Long> {
 
-    @Query(value = "select * from user_info where email = :email or admin = true" , nativeQuery = true)
-    UserInfo findByEmail( @Param("email") String email);
+    @Query(value = "select * from user_info where email = :email and senha =CONCAT(:senha, '')" , nativeQuery = true)
+    UserInfo findByEmailAndSenha( @Param("email") String email, @Param("senha") String senha);
 
+    UserInfo findByEmail(String email);
 }

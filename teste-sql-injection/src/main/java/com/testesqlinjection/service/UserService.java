@@ -17,12 +17,17 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public UserInfo getByEmail(String email){
-        return userRepository.findByEmail(email);
+    public UserInfo getByEmailAndSenha(String email, String senha){
+        return userRepository.findByEmailAndSenha(email,senha);
     }
 
     public void save(UserInfo user){
         userRepository.save(user);
     }
 
+    public UserInfo getByEmail(String email) {
+
+        return userRepository.findByEmail(email);
+
+    }
 }
